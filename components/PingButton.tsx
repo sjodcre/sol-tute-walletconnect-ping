@@ -11,8 +11,10 @@ export const PingButton: FC = () => {
 	const { publicKey, sendTransaction } = useWallet();
 
 	const onClick = () => {
-		if (!connection || !publicKey) { return }
-
+		if (!connection || !publicKey) {
+			console.error("Wallet not connected or connection unavailable");
+		  }
+		  
 		const programId = new web3.PublicKey(PROGRAM_ID)
 		const programDataAccount = new web3.PublicKey(DATA_ACCOUNT_PUBKEY)
 		const transaction = new web3.Transaction()
